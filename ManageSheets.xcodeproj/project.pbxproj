@@ -25,6 +25,12 @@
 		004F06F126EAA46900AAE970 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F06EF26EAA46900AAE970 /* Persistence.swift */; };
 		004F06F826EAB4A600AAE970 /* ManageSheets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 004F06F626EAB4A600AAE970 /* ManageSheets.xcdatamodeld */; };
 		004F06F926EAB4A600AAE970 /* ManageSheets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 004F06F626EAB4A600AAE970 /* ManageSheets.xcdatamodeld */; };
+		004F06FB26EAEF4000AAE970 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F06FA26EAEF4000AAE970 /* SongViewModel.swift */; };
+		004F06FC26EAEF4000AAE970 /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F06FA26EAEF4000AAE970 /* SongViewModel.swift */; };
+		004F06FE26EAEF4F00AAE970 /* GridImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F06FD26EAEF4F00AAE970 /* GridImageView.swift */; };
+		004F06FF26EAEF4F00AAE970 /* GridImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F06FD26EAEF4F00AAE970 /* GridImageView.swift */; };
+		004F070126EAF58100AAE970 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F070026EAF58100AAE970 /* ImageView.swift */; };
+		004F070226EAF58100AAE970 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004F070026EAF58100AAE970 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +70,9 @@
 		004F06A226EA996C00AAE970 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		004F06EF26EAA46900AAE970 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		004F06F726EAB4A600AAE970 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		004F06FA26EAEF4000AAE970 /* SongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
+		004F06FD26EAEF4F00AAE970 /* GridImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridImageView.swift; sourceTree = "<group>"; };
+		004F070026EAF58100AAE970 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +129,10 @@
 				004F069626EA8CAB00AAE970 /* SongView.swift */,
 				004F06A226EA996C00AAE970 /* ImagePicker.swift */,
 				004F06EF26EAA46900AAE970 /* Persistence.swift */,
+				004F06FA26EAEF4000AAE970 /* SongViewModel.swift */,
+				004F06FD26EAEF4F00AAE970 /* GridImageView.swift */,
 				004F069F26EA95A900AAE970 /* EditView.swift */,
+				004F070026EAF58100AAE970 /* ImageView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -328,12 +340,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004F070126EAF58100AAE970 /* ImageView.swift in Sources */,
 				004F068026EA870400AAE970 /* ManageSheetsApp.swift in Sources */,
+				004F06FB26EAEF4000AAE970 /* SongViewModel.swift in Sources */,
 				004F06A026EA95A900AAE970 /* EditView.swift in Sources */,
 				004F069726EA8CAB00AAE970 /* SongView.swift in Sources */,
 				004F06F026EAA46900AAE970 /* Persistence.swift in Sources */,
 				004F06A326EA996C00AAE970 /* ImagePicker.swift in Sources */,
 				004F06F826EAB4A600AAE970 /* ManageSheets.xcdatamodeld in Sources */,
+				004F06FE26EAEF4F00AAE970 /* GridImageView.swift in Sources */,
 				004F068226EA870400AAE970 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,12 +357,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004F070226EAF58100AAE970 /* ImageView.swift in Sources */,
 				004F068126EA870400AAE970 /* ManageSheetsApp.swift in Sources */,
+				004F06FC26EAEF4000AAE970 /* SongViewModel.swift in Sources */,
 				004F06A126EA95A900AAE970 /* EditView.swift in Sources */,
 				004F069826EA8CAB00AAE970 /* SongView.swift in Sources */,
 				004F06F126EAA46900AAE970 /* Persistence.swift in Sources */,
 				004F06A426EA996C00AAE970 /* ImagePicker.swift in Sources */,
 				004F06F926EAB4A600AAE970 /* ManageSheets.xcdatamodeld in Sources */,
+				004F06FF26EAEF4F00AAE970 /* GridImageView.swift in Sources */,
 				004F068326EA870400AAE970 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

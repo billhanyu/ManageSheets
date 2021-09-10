@@ -6,6 +6,7 @@
 //
 
 import CoreData
+import SwiftUI
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -16,6 +17,12 @@ struct PersistenceController {
         for i in 0..<10 {
             let newSong = Song(context: viewContext)
             newSong.name = "song\(i)"
+            ["image1", "image2", "image3", "image4"].forEach({name in
+                let image = UIImage(named: name)
+                let songImage = SongImage(context: viewContext)
+                songImage.data = image!.pngData()
+                newSong.addToImages(songImage)
+            })
         }
         do {
             try viewContext.save()

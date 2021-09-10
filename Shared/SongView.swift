@@ -8,28 +8,37 @@
 import SwiftUI
 
 struct SongView: View {
-    @ObservedObject var song: Song
+    @ObservedObject var songViewModel: SongViewModel
     
     var body: some View {
-        VStack{
-            song.author.map(Text.init)
-            List {
-                ForEach(Array(song.images as? Set<SongImage> ?? [])) { songImage in
-                    Image(uiImage: UIImage(data: songImage.data!)!)
-                           .resizable()
-                           .frame(width: 80, height: 80)
-                           .aspectRatio(contentMode: .fit)
-                        }
+        ScrollView {
+            VStack(alignment: .leading) {
+                Text(songViewModel.author)
+                let columns = Array(repeating: GridItem(.flexible(), spacing: 5), count: 3)
+                LazyVGrid(columns: columns, alignment: .center, spacing: 10, content: {
+                    ForEach(songViewModel.images.indices) { idx in
+                        let songImage = songViewModel.images[idx]
+                        GridImageView(image: songImage, index: idx).environmentObject(songViewModel)
+                    }
+                })
             }
+            .padding()
         }
-        .navigationTitle(song.name!)
+        .overlay(
+            ZStack {
+                if songViewModel.showingImages {
+                    ImageView().environmentObject(songViewModel)
+                }
+            }
+        )
+        .navigationTitle(songViewModel.name)
     }
 }
 
 struct SongView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            Text("TODO")
+            SongView(songViewModel: SongViewModel.preview[0])
         }
     }
 }

@@ -20,7 +20,9 @@ struct EditView: View {
                 TextField("Author", text: Binding($song.author)!)
             }
             Section(header: Text("Images")) {
-                ForEach(Array(song.images as? Set<SongImage> ?? [])) { songImage in
+                let arr = Array(song.images as? Set<SongImage> ?? [])
+                ForEach(arr.indices, id: \.self) { idx in
+                    let songImage = arr[idx]
                     Image(uiImage: UIImage(data: songImage.data!)!)
                            .resizable()
                            .frame(width: 80, height: 80)

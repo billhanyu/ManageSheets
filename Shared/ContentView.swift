@@ -21,7 +21,7 @@ struct ContentView: View {
     var body: some View {
         List {
             ForEach(songs) { song in
-                NavigationLink(destination: SongView(song: song)) {
+                NavigationLink(destination: SongView(songViewModel: SongViewModel(from: song))) {
                     song.name.map(Text.init)
                 }
             }
