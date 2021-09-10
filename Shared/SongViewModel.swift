@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 class SongViewModel: ObservableObject {
     @Published var name: String
@@ -13,6 +14,12 @@ class SongViewModel: ObservableObject {
     @Published var images: [UIImage]
     @Published var showingImages = false
     @Published var selectedImage = 0
+    
+    init() {
+        name = ""
+        author = ""
+        images = []
+    }
     
     init(from song: Song) {
         name = song.name!
@@ -28,6 +35,24 @@ class SongViewModel: ObservableObject {
         self.images = images.map({name in
             UIImage(named: name)!
         })
+    }
+    
+    func toSong(viewContext: NSManagedObjectContext) -> Song {
+        let song = Song(context: viewContext)
+        song.name = name
+        song.author = author
+        images.forEach({uiImage in
+            let songImage = SongImage(context: viewContext)
+            songImage.data = uiImage.pngData()
+            song.addToImages(songImage)
+        })
+        return song
+    }
+}
+
+extension SongViewModel: CustomStringConvertible {
+    var description: String {
+        return "\(name) by \(author) with \(images.count) images"
     }
 }
 

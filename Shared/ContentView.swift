@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @State private var addingNew = false
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var newSong: Song?
+    @State private var newSong = SongViewModel()
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Song.name, ascending: true)],
@@ -32,23 +32,22 @@ struct ContentView: View {
                 }
             }
         }
-        .navigationTitle("My Songs")
+        .navigationTitle("My Sheets")
         .navigationBarItems(trailing: Button(action: {
-            newSong = Song(context: viewContext)
             addingNew = true
         }) {
             Image(systemName: "plus")
         })
         .fullScreenCover(isPresented: $addingNew) {
             NavigationView {
-                EditView(song: newSong!)
+                EditView(songViewModel: newSong)
                     .navigationTitle("New Song")
                     .navigationBarItems(leading: Button("Cancel") {
                         addingNew = false
-                        viewContext.delete(newSong!)
                     }, trailing: Button("Done") {
-                        addingNew = false
+                        let _ = newSong.toSong(viewContext: viewContext)
                         saveContext()
+                        addingNew = false
                     }).environment(\.managedObjectContext, viewContext)
             }
         }

@@ -9,25 +9,28 @@ import SwiftUI
 
 struct EditView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var song: Song
+    @ObservedObject var songViewModel: SongViewModel
     @State private var showPhotoLibrary = false
     @State private var image = UIImage()
     
     var body: some View {
         List {
             Section(header: Text("Info")) {
-                TextField("Name", text: Binding($song.name)!)
-                TextField("Author", text: Binding($song.author)!)
+                TextField("Name", text: $songViewModel.name)
+                TextField("Author", text: $songViewModel.author)
             }
             Section(header: Text("Images")) {
-                let arr = Array(song.images as? Set<SongImage> ?? [])
-                ForEach(arr.indices, id: \.self) { idx in
-                    let songImage = arr[idx]
-                    Image(uiImage: UIImage(data: songImage.data!)!)
-                           .resizable()
-                           .frame(width: 80, height: 80)
-                           .aspectRatio(contentMode: .fit)
-                        }
+                ForEach(songViewModel.images.indices, id: \.self) { idx in
+                    let image = songViewModel.images[idx]
+                    Button(action: {
+                        songViewModel.selectedImage = idx
+                        songViewModel.showingImages = true
+                    }, label: {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    })
+                }
                 .onDelete{indices in
                     // TODO
                 }
@@ -42,20 +45,23 @@ struct EditView: View {
         }
         .listStyle(InsetGroupedListStyle())
         .sheet(isPresented: $showPhotoLibrary, onDismiss: {
-            if let data = image.pngData() {
-                let songImage = SongImage(context: viewContext)
-                songImage.data = data
-                song.addToImages(songImage)
+            if let _ = image.pngData() {
+                songViewModel.images.append(image)
                 image = UIImage()
             }
         }) {
             ImagePicker(sourceType: .photoLibrary, selectedImage: $image)
         }
+        .fullScreenCover(isPresented: $songViewModel.showingImages, content: {
+            ImageView().environmentObject(songViewModel)
+        })
     }
 }
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TODO")
+        NavigationView {
+            EditView(songViewModel: SongViewModel.preview[0])
+        }
     }
 }
