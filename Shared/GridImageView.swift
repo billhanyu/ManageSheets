@@ -23,7 +23,7 @@ struct GridImageView: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: (UIScreen.main.bounds.width - 100) / 3, maxHeight: 300, alignment: .center)
+                    .frame(maxWidth: (UIScreen.main.bounds.width - 100) / CGFloat(AppConstants.kSongImageColumns), maxHeight: 300, alignment: .center)
             }
         })
     }
