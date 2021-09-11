@@ -125,6 +125,7 @@
 		004F065126EA870100AAE970 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				004F070A26EC718C00AAE970 /* Model */,
 				004F06F626EAB4A600AAE970 /* ManageSheets.xcdatamodeld */,
 				004F065426EA870100AAE970 /* ManageSheetsApp.swift */,
 				004F065526EA870100AAE970 /* ContentView.swift */,
@@ -132,7 +133,6 @@
 				004F069626EA8CAB00AAE970 /* SongView.swift */,
 				004F06A226EA996C00AAE970 /* ImagePicker.swift */,
 				004F06EF26EAA46900AAE970 /* Persistence.swift */,
-				004F06FA26EAEF4000AAE970 /* SongViewModel.swift */,
 				004F06FD26EAEF4F00AAE970 /* GridImageView.swift */,
 				004F069F26EA95A900AAE970 /* EditView.swift */,
 				004F070026EAF58100AAE970 /* ImageView.swift */,
@@ -185,6 +185,14 @@
 				004F067D26EA870400AAE970 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		004F070A26EC718C00AAE970 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				004F06FA26EAEF4000AAE970 /* SongViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

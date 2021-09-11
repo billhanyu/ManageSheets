@@ -17,6 +17,7 @@ class SongViewModel: ObservableObject {
     // For when we magnify more than once, we need to start from where we ended last time.
     // Magnification gesture always starts from 1.
     @Published var lastMagnifyScale = CGFloat(1.0)
+    @Published var draggingOffset = CGFloat(0)
     @Published var magnifyScale = CGFloat(1.0)
     
     init() {
@@ -51,6 +52,21 @@ class SongViewModel: ObservableObject {
             song.addToImages(songImage)
         })
         return song
+    }
+    
+    func onUpdateDrag(value: DragGesture.Value) {
+        withAnimation() {
+            draggingOffset = value.translation.height
+        }
+    }
+    
+    func onEndDrag(value: DragGesture.Value) {
+        withAnimation() {
+            draggingOffset = 0
+            if (abs(value.translation.height) > 250) {
+                showingImages = false
+            }
+        }
     }
     
     func onUpdateMagnify(value: MagnificationGesture.Value) {
