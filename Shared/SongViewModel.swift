@@ -14,6 +14,10 @@ class SongViewModel: ObservableObject {
     @Published var images: [UIImage]
     @Published var showingImages = false
     @Published var selectedImage = 0
+    // For when we magnify more than once, we need to start from where we ended last time.
+    // Magnification gesture always starts from 1.
+    @Published var lastMagnifyScale = CGFloat(1.0)
+    @Published var magnifyScale = CGFloat(1.0)
     
     init() {
         name = ""
@@ -47,6 +51,19 @@ class SongViewModel: ObservableObject {
             song.addToImages(songImage)
         })
         return song
+    }
+    
+    func onUpdateMagnify(value: MagnificationGesture.Value) {
+        withAnimation() {
+            magnifyScale = lastMagnifyScale * value
+        }
+    }
+    
+    func onEndMagnify(value: MagnificationGesture.Value) {
+        withAnimation() {
+            magnifyScale = min(4, max(1, lastMagnifyScale * value))
+            lastMagnifyScale = magnifyScale
+        }
     }
 }
 
