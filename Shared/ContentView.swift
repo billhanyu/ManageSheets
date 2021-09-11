@@ -45,9 +45,11 @@ struct ContentView: View {
                     .navigationBarItems(leading: Button("Cancel") {
                         addingNew = false
                     }, trailing: Button("Done") {
-                        let _ = newSong.toSong(viewContext: viewContext)
-                        saveContext()
                         addingNew = false
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            let _ = newSong.toSong(viewContext: viewContext)
+                            saveContext()
+                        }
                     }).environment(\.managedObjectContext, viewContext)
             }
         }
