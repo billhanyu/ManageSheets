@@ -14,8 +14,8 @@ struct SongView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 Text(songViewModel.author)
-                let columns = Array(repeating: GridItem(.flexible(), spacing: 5), count: AppConstants.kSongImageColumns)
-                LazyVGrid(columns: columns, alignment: .center, spacing: 10, content: {
+                let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: AppConstants.kSongImageColumns)
+                LazyVGrid(columns: columns, alignment: .center, spacing: 0, content: {
                     ForEach(songViewModel.images.indices) { idx in
                         let songImage = songViewModel.images[idx]
                         GridImageView(image: songImage, index: idx).environmentObject(songViewModel)
