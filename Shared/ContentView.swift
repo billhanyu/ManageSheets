@@ -55,13 +55,6 @@ struct ContentView: View {
         }
     }
     
-    private func binding(for song: Song) -> ObservedObject<Song> {
-        guard let songIndex = songs.firstIndex(where: {$0.id == song.id }) else {
-            fatalError("Cannot find song")
-        }
-        return ObservedObject(wrappedValue: songs[songIndex])
-    }
-    
     private func saveContext() {
         do {
             try viewContext.save()
