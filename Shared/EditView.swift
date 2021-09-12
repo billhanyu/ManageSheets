@@ -32,7 +32,7 @@ struct EditView: View {
                     })
                 }
                 .onDelete{indices in
-                    // TODO
+                    songViewModel.images = songViewModel.images.indices.filter({!indices.contains($0)}).map({songViewModel.images[$0]})
                 }
                 
                 Button(action: {
